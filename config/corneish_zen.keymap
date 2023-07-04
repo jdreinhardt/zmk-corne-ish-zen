@@ -2,16 +2,46 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-#define TAP_TERM 500
+#define TAP_TERM 400
 
 #define _DEFAULT 0
 #define _NUMBER 1
+#define _FUNCTION 2
+#define _XTRA 3
 
 / {
   chosen {
     zmk,matrix_transform = &default_transform;
     //zmk,matrix_transform = &five_column_transform;
   };
+};
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+        combo_layer_one {
+            timeout-ms = <50>;
+            key-positions = <36 37>; //GUI + CTRL
+            bindings = <&mo 1>;
+            slow-release = true;
+        };
+        combo_layer_two {
+            timeout-ms = <50>;
+            key-positions = <40 41>; //BKSP + RET
+            bindings = <&mo 2>;
+            slow-release = true;
+        };
+    };
+};
+
+/ {
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
+    };
 };
 
 &mt {
@@ -31,27 +61,27 @@
 // -----------------------------------------------------------------------------------------
 // |  `   |  Q  |  W  |  E  |  R   |  T  |   |  Y   |  U   |  I  |  O  |  P  | BKSP |
 // | TAB  |  A  |  S  |  D  |  F   |  G  |   |  H   |  J   |  K  |  L  |  ;  |  '   |
-// | CTRL |  Z  |  X  |  C  |  V   |  B  |   |  N   |  M   |  ,  |  .  |  /  |  \   |
+// | SHFT |  Z  |  X  |  C  |  V   |  B  |   |  N   |  M   |  ,  |  .  |  /  |  \   |
 //                    | GUI | CTRL | SPC |   | SHFT | BSPC | ALT |
                         bindings = <
    &kp GRAVE &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
    &kp TAB   &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp APOS
    &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp BSLH
-            &kp LGUI &lt 1 LCTRL &kp SPACE   &kp RSHFT &lt 2 BSPC &mt RET RALT
+            &kp LGUI &kp LCTRL &kp SPACE   &kp RSHFT &kp BSPC &mt RET RALT
                         >;
                 };
                 lower_layer {
                         label = "SYMNUM";
 // -----------------------------------------------------------------------------------------
 // |  ESC |  !  |  @  |  #  |  $  |  %  |   |  /  |  7  |  8  |  9  |  +  | DEL |
-// |      |  ^  |  &  |  *  |  (  |  )  |   |  -  |  4  |  5  |  6  |  =  |     |
+// |      |  ^  |  &  |  *  |  (  |  )  |   |  -  |  4  |  5  |  6  |  .  |  =  |
 // | SHFT |     |  [  |  ]  |  {  |  }  |   |  _  |  1  |  2  |  3  |  0  |     |
 //                    | GUI |     | SPC |   | ENT | LYR3 | ALT |
                         bindings = <
    &kp ESC   &kp EXCL  &kp AT   &kp HASH &kp DLLR  &kp PRCNT   &kp SLASH &kp N7 &kp N8 &kp N9 &kp PLUS  &kp DEL
-   &trans    &kp CARET &kp AMPS &kp STAR &kp LPAR  &kp RPAR    &kp MINUS &kp N4 &kp N5 &kp N6 &kp EQUAL &trans
+   &trans    &kp CARET &kp AMPS &kp STAR &kp LPAR  &kp RPAR    &kp MINUS &kp N4 &kp N5 &kp N6 &kp DOT   &kp EQUAL
    &kp LSHFT &trans    &kp LBKT &kp RBKT &kp LBRC  &kp RBRC    &kp UNDER &kp N1 &kp N2 &kp N3 &kp N0    &trans
-                                  &trans  &trans   &trans      &trans  &mo 3   &trans
+                                  &trans  &trans   &trans      &trans  &trans   &trans
                         >;
                 };
 
@@ -66,7 +96,7 @@
    &trans    &kp F1 &kp F2  &kp F3  &kp F4  &trans    &trans &kp LG(LC(LEFT)) &kp UP   &kp LG(LC(RIGHT)) &kp C_VOL_UP &kp CAPS 
    &kp LCTRL &kp F5 &kp F6  &kp F7  &kp F8  &trans    &trans &kp LEFT         &kp DOWN &kp RIGHT         &kp C_VOL_DN &trans 
    &kp LSHFT &kp F9 &kp F10 &kp F11 &kp F12 &trans    &trans &kp C_PREV       &kp C_PP &kp C_NEXT        &kp C_MUTE   &trans 
-                              &trans &mo 3  &trans    &trans &trans     &trans
+                            &trans  &trans  &trans    &trans  &trans  &trans
                         >;
                 };
 

@@ -48,10 +48,6 @@
     tapping-term-ms = <TAP_TERM>;
 };
 
-&lt {
-    tapping-term-ms = <TAP_TERM>;
-};
-
 / {
         keymap {
                 compatible = "zmk,keymap";

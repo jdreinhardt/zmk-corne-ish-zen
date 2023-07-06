@@ -83,14 +83,14 @@
                 };
                 tdlay1: tap_dance_lay1 {
                         compatible = "zmk,behavior-tap-dance";
-                        label = "TAP_DANCE_ESC";
+                        label = "TAP_DANCE_LAYER1";
                         #binding-cells = <0>;
                         tapping-term-ms = <200>;
                         bindings = <&kp LCTRL>, <&mo 1>;
                 };
                 tdlay2: tap_dance_lay2 {
                         compatible = "zmk,behavior-tap-dance";
-                        label = "TAP_DANCE_ESC";
+                        label = "TAP_DANCE_LAYER2";
                         #binding-cells = <0>;
                         tapping-term-ms = <200>;
                         bindings = <&kp RSHFT>, <&mo 2>;

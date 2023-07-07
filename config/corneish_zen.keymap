@@ -61,18 +61,31 @@
 &mt {
     tapping-term-ms = <400>;
 };
+&lt {
+    tapping-term-ms = <200>;
+};
 
 / {
         behaviors {
-                tl: inverse_layer_tap {
+                skh: sticky_key_hold {
                         compatible = "zmk,behavior-hold-tap";
-                        label = "INVERSE_LAYER_TAP";
+                        label = "STICKY_KEY_HOLD";
                         #binding-cells = <2>;
-                        flavor = "hold-preferred";
+                        flavor = "balanced";
                         tapping-term-ms = <400>;
                         quick-tap-ms = <125>;
                         global-quick-tap;
-                        bindings = <&kp>, <&to>;
+                        bindings = <&kp>, <&sk>;
+                };
+                skhl: sticky_key_hold_layer {
+                        compatible = "zmk,behavior-hold-tap";
+                        label = "STICKY_KEY_HOLD_LAYER";
+                        #binding-cells = <2>;
+                        flavor = "balanced";
+                        tapping-term-ms = <400>;
+                        quick-tap-ms = <125>;
+                        global-quick-tap;
+                        bindings = <&mo>, <&sk>;
                 };
                 tdesc: tap_dance_ESC {
                         compatible = "zmk,behavior-tap-dance";
@@ -80,20 +93,6 @@
                         #binding-cells = <0>;
                         tapping-term-ms = <200>;
                         bindings = <&kp GRAVE>, <&kp ESC>;
-                };
-                tdlay1: tap_dance_lay1 {
-                        compatible = "zmk,behavior-tap-dance";
-                        label = "TAP_DANCE_LAYER1";
-                        #binding-cells = <0>;
-                        tapping-term-ms = <200>;
-                        bindings = <&kp LCTRL>, <&mo 1>;
-                };
-                tdlay2: tap_dance_lay2 {
-                        compatible = "zmk,behavior-tap-dance";
-                        label = "TAP_DANCE_LAYER2";
-                        #binding-cells = <0>;
-                        tapping-term-ms = <200>;
-                        bindings = <&kp RSHFT>, <&mo 2>;
                 };
         };
         keymap {
@@ -110,7 +109,7 @@
    &tdesc    &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
    &kp TAB   &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp APOS
    &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp BSLH
-                &kp LGUI &tdlay1 &kp SPACE   &kp BSPC &tdlay2 &mt RALT RET
+                &kp LGUI &skhl 1 LCTRL &kp SPACE   &kp BSPC &lt 2 RET &skh ALT LG(LS)
                         >;
                 };
                 lower_layer {
@@ -124,7 +123,7 @@
    &kp ESC   &kp EXCL  &kp AT   &kp HASH &kp DLLR  &kp PRCNT   &kp SLASH &kp N7 &kp N8 &kp N9 &kp PLUS &kp DEL
    &trans    &kp CARET &kp AMPS &kp STAR &kp LPAR  &kp RPAR    &kp MINUS &kp N4 &kp N5 &kp N6 &kp N0   &kp EQUAL
    &kp LSHFT &trans    &kp LBKT &kp RBKT &kp LBRC  &kp RBRC    &kp UNDER &kp N1 &kp N2 &kp N3 &kp DOT  &trans
-                                   &trans  &trans  &trans      &kp RET  &trans  &trans
+                                   &trans  &trans  &trans      &trans  &trans  &trans
                         >;
                 };
 
@@ -139,7 +138,7 @@
    &trans    &kp F1 &kp F2  &kp F3  &kp F4  &trans    &trans &kp LG(LC(LEFT)) &kp UP   &kp LG(LC(RIGHT)) &kp C_VOL_UP &kp CAPS
    &kp LCTRL &kp F5 &kp F6  &kp F7  &kp F8  &trans    &trans &kp LEFT         &kp DOWN &kp RIGHT         &kp C_VOL_DN &kp LC(PSCRN)
    &kp LSHFT &kp F9 &kp F10 &kp F11 &kp F12 &trans    &trans &kp C_PREV       &kp C_PP &kp C_NEXT        &kp C_MUTE   &kp LG(LS(N2)) 
-                            &trans  &trans  &trans    &kp RET  &trans  &trans
+                            &trans  &trans  &trans    &trans  &trans  &trans
                         >;
                 };
 

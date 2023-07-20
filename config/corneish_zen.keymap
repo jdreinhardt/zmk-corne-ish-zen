@@ -99,20 +99,6 @@
                 compatible = "zmk,keymap";
 
                 default_layer { // 0
-                        label = "COLEMAK";
-// -----------------------------------------------------------------------------------------
-// |  `   |  Q  |  W  |  F  |  P   |  B  |   |  J   |  L   |  U  |  Y  |  ;  | BKSP |
-// | TAB  |  A  |  R  |  S  |  T   |  G  |   |  M   |  N   |  E  |  I  |  O  |  '   |
-// | SHFT |  Z  |  X  |  C  |  D   |  V  |   |  K   |  H   |  ,  |  .  |  /  |  \   |
-//                    | GUI | CTRL | SPC |   | SHFT | BSPC | ALT |
-                        bindings = <
-   &tdesc    &kp Q &kp W &kp F &kp P &kp B   &kp J &kp L  &kp U     &kp Y   &kp SEMI &kp BSPC
-   &kp TAB   &kp A &kp R &kp S &kp T &kp G   &kp M &kp N  &kp E     &kp I   &kp O    &kp APOS
-   &kp LSHFT &kp Z &kp X &kp C &kp D &kp V   &kp K &kp H  &kp COMMA &kp DOT &kp FSLH &kp BSLH
-                &kp LGUI &skhl 2 LCTRL &kp SPACE   &kp BSPC &lt 3 RET &skh LALT LG(LSHFT)
-                        >;
-                };
-                qwerty_layer { // 1
                         label = "QWERTY";
 // -----------------------------------------------------------------------------------------
 // |  `   |  Q  |  W  |  E  |  R   |  T  |   |  Y   |  U   |  I  |  O  |  P  | BKSP |
@@ -126,6 +112,22 @@
                 &kp LGUI &skhl 2 LCTRL &kp SPACE   &kp BSPC &lt 3 RET &skh LALT LG(LSHFT)
                         >;
                 };
+
+                colemak_layer { // 1
+                        label = "COLEMAK";
+// -----------------------------------------------------------------------------------------
+// |  `   |  Q  |  W  |  F  |  P   |  B  |   |  J   |  L   |  U  |  Y  |  ;  | BKSP |
+// | TAB  |  A  |  R  |  S  |  T   |  G  |   |  M   |  N   |  E  |  I  |  O  |  '   |
+// | SHFT |  Z  |  X  |  C  |  D   |  V  |   |  K   |  H   |  ,  |  .  |  /  |  \   |
+//                    | GUI | CTRL | SPC |   | SHFT | BSPC | ALT |
+                        bindings = <
+   &tdesc    &kp Q &kp W &kp F &kp P &kp B   &kp J &kp L  &kp U     &kp Y   &kp SEMI &kp BSPC
+   &kp TAB   &kp A &kp R &kp S &kp T &kp G   &kp M &kp N  &kp E     &kp I   &kp O    &kp APOS
+   &kp LSHFT &kp Z &kp X &kp C &kp D &kp V   &kp K &kp H  &kp COMMA &kp DOT &kp FSLH &kp BSLH
+                &kp LGUI &skhl 2 LCTRL &kp SPACE   &kp BSPC &lt 3 RET &skh LALT LG(LSHFT)
+                        >;
+                };
+
                 lower_layer { // 2
                         label = "SYMBOLS";
 // -----------------------------------------------------------------------------------------

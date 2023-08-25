@@ -94,6 +94,15 @@
                         tapping-term-ms = <200>;
                         bindings = <&kp GRAVE>, <&kp ESC>;
                 };
+                hm: homerow_mods {
+                    compatible = "zmk,behavior-hold-tap";
+                    label = "HOMEROW_MODS";
+                    #binding-cells = <2>;
+                    tapping-term-ms = <300>;
+                    quick-tap-ms = <0>;
+                    flavor = "tap-preferred";
+                    bindings = <&kp>, <&kp>;
+                };
         };
         keymap {
                 compatible = "zmk,keymap";
@@ -106,10 +115,10 @@
 // | SHFT |  Z  |  X  |  C  |  V   |  B  |   |  N   |  M   |  ,  |  .  |  /  |  \   |
 //                    | GUI | CTRL | SPC |   | SHFT | BSPC | ALT |
                         bindings = <
-   &tdesc    &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp TAB   &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp APOS
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp BSLH
-                &kp LGUI &skhl 2 LCTRL &kp SPACE   &kp BSPC &lt 3 RET &skh LALT LG(LSHFT)
+   &tdesc    &kp Q       &kp W      &kp E       &kp R      &kp T   &kp Y &kp U      &kp I      &kp O       &kp P          &kp BSPC
+   &kp TAB   &hm LSHFT A &hm LALT S &hm LCTRL D &hm LGUI F &kp G   &kp H &hm RGUI J &hm RCTRL K &hm RALT L &hm RSHFT SEMI &kp APOS
+   &kp LSHFT &kp Z       &kp X      &kp C       &kp V      &kp B   &kp N &kp M      &kp COMMA  &kp DOT     &kp FSLH       &kp BSLH
+                               &kp LGUI &skhl 2 LCTRL &kp SPACE   &kp BSPC &lt 3 RET &skh LALT LG(LSHFT)
                         >;
                 };
 
@@ -121,9 +130,9 @@
 // | SHFT |  Z  |  X  |  C  |  D   |  V  |   |  K   |  H   |  ,  |  .  |  /  |  \   |
 //                    | GUI | CTRL | SPC |   | SHFT | BSPC | ALT |
                         bindings = <
-   &tdesc    &kp Q &kp W &kp F &kp P &kp B   &kp J &kp L  &kp U     &kp Y   &kp SEMI &kp BSPC
-   &kp TAB   &kp A &kp R &kp S &kp T &kp G   &kp M &kp N  &kp E     &kp I   &kp O    &kp APOS
-   &kp LSHFT &kp Z &kp X &kp C &kp D &kp V   &kp K &kp H  &kp COMMA &kp DOT &kp FSLH &kp BSLH
+   &tdesc    &kp Q       &kp W      &kp F       &kp P      &kp B   &kp J &kp L      &kp U       &kp Y      &kp SEMI    &kp BSPC
+   &kp TAB   &hm LSHFT A &hm LALT R &hm LCTRL S &hm LGUI T &kp G   &kp M &hm RGUI N &hm RCTRL E &hm RALT I &hm RSHFT O &kp APOS
+   &kp LSHFT &kp Z       &kp X      &kp C       &kp D      &kp V   &kp K &kp H      &kp COMMA   &kp DOT    &kp FSLH    &kp BSLH
                 &kp LGUI &skhl 2 LCTRL &kp SPACE   &kp BSPC &lt 3 RET &skh LALT LG(LSHFT)
                         >;
                 };

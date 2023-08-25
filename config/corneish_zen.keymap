@@ -2,6 +2,11 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define _L_QWE 0
+#define _L_COL 1
+#define _L_SYM 2
+#define _L_FUN 3
+#define _L_BLU 4
 
 / {
   chosen {
@@ -13,32 +18,10 @@
 / {
     combos {
         compatible = "zmk,combos";
-        combo_layerone {
-            timeout-ms = <50>;
-            key-positions = <37 40>; // CTRL + BKSP
-            bindings = <&mo 1>;
-            slow-release;
-        };
-        combo_layertwo {
-            timeout-ms = <50>;
-            key-positions = <36 41>; // GUI + RET
-            bindings = <&mo 2>;
-            slow-release;
-        };
         combo_capsword {
             timeout-ms = <50>;
             key-positions = <38 39>; // SPC + SHFT
             bindings = <&caps_word>;
-        };
-        combo_lshft {
-            timeout-ms = <50>;
-            key-positions = <15 16>; // D + F
-            bindings = <&kp LSHFT>;
-        };
-        combo_rshft {
-            timeout-ms = <50>;
-            key-positions = <19 20>; // J + K
-            bindings = <&kp RSHFT>;
         };
         combo_minus {
             timeout-ms = <50>;
@@ -52,41 +35,18 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <2 3>;
-            then-layer = <4>;
+            if-layers = <_L_SYM _L_FUN>;
+            then-layer = <_L_BLU>;
         };
     };
 };
 
-&mt {
-    tapping-term-ms = <400>;
-};
 &lt {
     tapping-term-ms = <200>;
 };
 
 / {
         behaviors {
-                skh: sticky_key_hold {
-                        compatible = "zmk,behavior-hold-tap";
-                        label = "STICKY_KEY_HOLD";
-                        #binding-cells = <2>;
-                        flavor = "balanced";
-                        tapping-term-ms = <400>;
-                        quick-tap-ms = <125>;
-                        global-quick-tap;
-                        bindings = <&kp>, <&sk>;
-                };
-                skhl: sticky_key_hold_layer {
-                        compatible = "zmk,behavior-hold-tap";
-                        label = "STICKY_KEY_HOLD_LAYER";
-                        #binding-cells = <2>;
-                        flavor = "balanced";
-                        tapping-term-ms = <400>;
-                        quick-tap-ms = <125>;
-                        global-quick-tap;
-                        bindings = <&mo>, <&sk>;
-                };
                 tdesc: tap_dance_ESC {
                         compatible = "zmk,behavior-tap-dance";
                         label = "TAP_DANCE_ESC";
@@ -98,11 +58,19 @@
                     compatible = "zmk,behavior-hold-tap";
                     label = "HOMEROW_MODS";
                     #binding-cells = <2>;
-                    tapping-term-ms = <300>;
+                    tapping-term-ms = <200>;
                     quick-tap-ms = <0>;
                     flavor = "tap-preferred";
                     bindings = <&kp>, <&kp>;
                 };
+                num_word: behavior_num_word {
+                    compatible = "zmk,behavior-caps-word";
+                    label = "NUM_WORD";
+                    #binding-cells = <0>;
+                    layers = <_L_SYM>;
+                    continue-list = <BACKSPACE DELETE DOT COMMA MINUS EQUAL UNDER SLASH PLUS STAR>;
+                    ignore-numbers;
+		        };
         };
         keymap {
                 compatible = "zmk,keymap";
@@ -118,7 +86,7 @@
    &tdesc    &kp Q       &kp W      &kp E       &kp R      &kp T   &kp Y &kp U      &kp I      &kp O       &kp P          &kp BSPC
    &kp TAB   &hm LSHFT A &hm LALT S &hm LCTRL D &hm LGUI F &kp G   &kp H &hm RGUI J &hm RCTRL K &hm RALT L &hm RSHFT SEMI &kp APOS
    &kp LSHFT &kp Z       &kp X      &kp C       &kp V      &kp B   &kp N &kp M      &kp COMMA  &kp DOT     &kp FSLH       &kp BSLH
-                               &kp LGUI &skhl 2 LCTRL &kp SPACE   &kp BSPC &lt 3 RET &skh LALT LG(LSHFT)
+                                    &kp TAB &mo _L_SYM &kp SPACE   &kp BSPC &lt _L_FUN RET &num_word
                         >;
                 };
 
@@ -133,7 +101,7 @@
    &tdesc    &kp Q       &kp W      &kp F       &kp P      &kp B   &kp J &kp L      &kp U       &kp Y      &kp SEMI    &kp BSPC
    &kp TAB   &hm LSHFT A &hm LALT R &hm LCTRL S &hm LGUI T &kp G   &kp M &hm RGUI N &hm RCTRL E &hm RALT I &hm RSHFT O &kp APOS
    &kp LSHFT &kp Z       &kp X      &kp C       &kp D      &kp V   &kp K &kp H      &kp COMMA   &kp DOT    &kp FSLH    &kp BSLH
-                &kp LGUI &skhl 2 LCTRL &kp SPACE   &kp BSPC &lt 3 RET &skh LALT LG(LSHFT)
+                                    &kp TAB &mo _L_SYM &kp SPACE   &kp BSPC &lt _L_FUN RET &num_word
                         >;
                 };
 
@@ -145,10 +113,10 @@
 // | SHFT |     |  [  |  ]  |  {  |  }  |   |  _  |  1  |  2  |  3  |  .  |     |
 //                    | GUI |     | SPC |   | ENT | LYR3 | ALT |
                         bindings = <
-   &kp ESC   &kp EXCL  &kp AT   &kp HASH &kp DLLR  &kp PRCNT   &kp SLASH &kp N7 &kp N8 &kp N9 &kp PLUS &kp DEL
-   &trans    &kp CARET &kp AMPS &kp STAR &kp LPAR  &kp RPAR    &kp MINUS &kp N4 &kp N5 &kp N6 &kp N0   &kp EQUAL
-   &kp LSHFT &trans    &kp LBKT &kp RBKT &kp LBRC  &kp RBRC    &kp UNDER &kp N1 &kp N2 &kp N3 &kp DOT  &trans
-                                   &trans  &trans  &trans      &trans  &trans  &trans
+   &kp ESC &kp EXCL  &kp AT   &kp HASH &kp DLLR  &kp PRCNT   &kp SLASH &kp N7 &kp N8 &kp N9 &kp PLUS &kp DEL
+   &trans  &kp CARET &kp AMPS &kp STAR &kp LPAR  &kp RPAR    &kp MINUS &kp N4 &kp N5 &kp N6 &kp N0   &kp EQUAL
+   &trans  &trans    &kp LBKT &kp RBKT &kp LBRC  &kp RBRC    &kp UNDER &kp N1 &kp N2 &kp N3 &kp DOT  &trans
+                                   &trans  &trans  &trans    &trans  &trans  &trans
                         >;
                 };
 
@@ -160,10 +128,10 @@
 // | SHFT |  F9 | F10 | F11 | F12 |     |   |     | PREV | PLAY | NEXT | MUTE |      |
 //                   | GUI | LYR3 | SPC |   | ENT |      | ALT  |
                         bindings = <
-   &trans    &kp F1 &kp F2  &kp F3  &kp F4  &trans    &trans &kp LG(LC(LEFT)) &kp UP   &kp LG(LC(RIGHT)) &kp C_VOL_UP &kp CAPS
-   &kp LCTRL &kp F5 &kp F6  &kp F7  &kp F8  &trans    &trans &kp LEFT         &kp DOWN &kp RIGHT         &kp C_VOL_DN &kp LC(PSCRN)
-   &kp LSHFT &kp F9 &kp F10 &kp F11 &kp F12 &trans    &trans &kp C_PREV       &kp C_PP &kp C_NEXT        &kp C_MUTE   &kp LG(LS(N2)) 
-                            &trans  &trans  &trans    &trans  &trans  &trans
+   &trans &kp F1 &kp F2  &kp F3  &kp F4  &trans    &trans &kp LG(LC(LEFT)) &kp UP   &kp LG(LC(RIGHT)) &kp C_VOL_UP &kp CAPS
+   &trans &kp F5 &kp F6  &kp F7  &kp F8  &trans    &trans &kp LEFT         &kp DOWN &kp RIGHT         &kp C_VOL_DN &kp LC(PSCRN)
+   &trans &kp F9 &kp F10 &kp F11 &kp F12 &trans    &trans &kp C_PREV       &kp C_PP &kp C_NEXT        &kp C_MUTE   &kp LG(LS(N2)) 
+                         &trans  &trans  &trans    &trans  &trans  &trans
                         >;
                 };
 

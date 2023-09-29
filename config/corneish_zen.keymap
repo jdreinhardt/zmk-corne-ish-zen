@@ -75,10 +75,10 @@
 // | SHFT |  Z  |  X  |  C  |  V   |  B  |   |  N   |  M   |  ,  |  .  |  /  |  \   |
 //                    | GUI | CTRL | SPC |   | SHFT | BSPC | ALT |
                         bindings = <
-   &tdesc    &kp Q  &kp W      &kp E       &kp R       &kp T   &kp Y &kp U       &kp I       &kp O      &kp P     &kp BSPC
-   &kp TAB   &kp A  &hm LGUI S &hm LCTRL D &hm LSHFT F &kp G   &kp H &hm RSHFT J &hm RCTRL K &hm RGUI L &kp SEMI  &kp APOS
-   &kp LSHFT &kp Z  &kp X      &kp C       &kp V       &kp B   &kp N &kp M       &kp COMMA   &kp DOT    &kp FSLH  &kp BSLH
-                              &kp LCTRL &mo _L_SYM &kp SPACE   &kp BSPC &lt _L_FUN RET &kp LALT
+   &tdesc    &kp Q      &kp W      &kp E       &kp R       &kp T   &kp Y &kp U       &kp I           &kp O        &kp P     &kp BSPC
+   &kp TAB   &kp A      &kp S      &kp D       &kp F       &kp G   &kp H &kp J       &kp K           &kp L        &kp SEMI  &kp APOS
+   &kp LSHFT &hm LALT Z &hm LGUI X &hm LCTRL C &hm LSHFT V &kp B   &kp N &hm RSHFT M &hm RCTRL COMMA &hm RGUI DOT &kp FSLH  &kp BSLH
+                                   &kp LGUI &mo _L_SYM &kp SPACE   &kp BSPC &lt _L_FUN RET &kp LALT
                         >;
                 };
 

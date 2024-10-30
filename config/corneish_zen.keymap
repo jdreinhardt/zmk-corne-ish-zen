@@ -100,9 +100,9 @@
 // | SHFT |  Z  |  X  |  C  |  D   |  V  |   |  K   |  H   |  ,  |  .  |  /  |  \   |
 //                    | GUI | CTRL | SPC |   | SHFT | BSPC | ALT |
                         bindings = <
-   &tdesc    &kp Q      &kp W      &kp F       &kp P       &kp B   &kp J &kp L       &kp U       &kp Y      &kp SEMI   &kp BSPC
-   &kp TAB   &hm LALT A &hm LGUI R &hm LCTRL S &hm LSHFT T &kp G   &kp M &hm RSHFT N &hm RCTRL E &hm RGUI I &hm RALT O &kp APOS
-   &kp LSHFT &kp Z      &kp X      &kp C       &kp D       &kp V   &kp K &kp H       &kp COMMA   &kp DOT    &kp FSLH   &kp BSLH
+   &tdesc    &kp Q      &kp W      &kp F       &kp P  &kp B   &kp J &kp L  &kp U           &kp Y        &kp SEMI      &kp BSPC
+   &kp TAB   &kp A      &kp R      &kp S       &kp T  &kp G   &kp M &kp N  &kp E           &kp I        &kp O         &kp APOS
+   &kp LSHFT &hm LALT Z &hm LGUI X &hm LCTRL C &kp D  &kp V   &kp K &kp H  &hm RCTRL COMMA &hm RGUI DOT &hm RALT FSLH &hm RSHFT BSLH
                                     &kp TAB &mo _L_SYM &kp SPACE   &kp BSPC &lt _L_FUN RET &kp LGUI
                         >;
                 };
@@ -126,8 +126,8 @@
                         label = "FUNC";
 // -----------------------------------------------------------------------------------------
 // |      |  F1 | F2  | F3  | F4  |     |   |     | SCRL |  UP  | SCRR | VOL+ | CAPS |
-// | CTRL |  F5 | F6  | F7  | F8  |     |   |     | LEFT | DOWN | RGHT | VOL+ |      |
-// | SHFT |  F9 | F10 | F11 | F12 |     |   |     | PREV | PLAY | NEXT | MUTE |      |
+// | CTRL |  F5 | F6  | F7  | F8  |     |   |     | LEFT | DOWN | RGHT | VOL+ | PSCN |
+// | SHFT |  F9 | F10 | F11 | F12 |     |   |     | PREV | PLAY | NEXT | MUTE | PWIN |
 //                   | GUI | LYR3 | SPC |   | ENT |      | ALT  |
                         bindings = <
    &trans &kp F1 &kp F2  &kp F3  &kp F4  &trans    &trans &kp LG(LC(LEFT)) &kp UP   &kp LG(LC(RIGHT)) &kp C_VOL_UP &kp CAPS
